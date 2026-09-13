@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EarnMoney - Plan Purchase</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #020807;
+            color: #ffffff;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           BACKGROUND
+        ========================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            top: -250px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 255, 170, 0.12);
+            filter: blur(130px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 80% 25%,
+                    rgba(0, 255, 170, 0.12),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 15% 80%,
+                    rgba(0, 100, 255, 0.08),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #020706,
+                    #03110d 50%,
+                    #020807
+                );
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            width: 100%;
+            max-width: 1250px;
+            margin: auto;
+            padding: 22px 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+            font-weight: 900;
+
+            background: linear-gradient(
+                135deg,
+                #00ffad,
+                #14c87f
+            );
+
+            color: #002018;
+            box-shadow: 0 8px 30px rgba(0,255,173,0.2);
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .brand-name span {
+            color: #00ffad;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 38px;
+        }
+
+        .nav-links a {
+            color: #aab8b4;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #00ffad;
+        }
+
+        .nav-download {
+            padding: 13px 23px;
+            border-radius: 30px;
+
+            background: #00ffad;
+            color: #002018 !important;
+
+            font-weight: 800 !important;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            max-width: 1250px;
+            min-height: 690px;
+            margin: auto;
+            padding: 70px 30px;
+
+            display: grid;
+            grid-template-columns: 1fr 0.9fr;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 10px 17px;
+            margin-bottom: 25px;
+
+            border: 1px solid rgba(0,255,173,0.35);
+            border-radius: 30px;
+
+            background: rgba(0,255,173,0.07);
+
+            color: #00ffad;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            max-width: 700px;
+
+            font-size: clamp(50px, 6vw, 82px);
+            line-height: 0.98;
+            letter-spacing: -5px;
+            font-weight: 900;
+
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #00ffad;
+        }
+
+        .hero-description {
+            max-width: 570px;
+
+            color: #a9b7b3;
+            font-size: 18px;
+            line-height: 1.7;
+
+            margin-bottom: 32px;
+        }
+
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            min-width: 225px;
+            height: 60px;
+
+            padding: 0 28px;
+
+            border-radius: 16px;
+
+            background: linear-gradient(
+                135deg,
+                #00ffad,
+                #43ee82
+            );
+
+            color: #002018;
+            text-decoration: none;
+
+            font-size: 17px;
+            font-weight: 900;
+
+            box-shadow:
+                0 15px 45px rgba(0,255,173,0.20);
+
+            transition: 0.25s ease;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 20px 55px rgba(0,255,173,0.35);
+        }
+
+        .android-icon {
+            font-size: 23px;
+        }
+
+        .small-info {
+            margin-top: 18px;
+            color: #667772;
+            font-size: 12px;
+        }
+
+        /* =========================
+           PHONE MOCKUP
+        ========================= */
+
+        .phone-area {
+            position: relative;
+            min-height: 560px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-glow {
+            position: absolute;
+
+            width: 370px;
+            height: 370px;
+
+            border-radius: 50%;
+
+            background: rgba(0,255,173,0.12);
+            filter: blur(80px);
+        }
+
+        .phone {
+            position: relative;
+            z-index: 2;
+
+            width: 285px;
+            min-height: 570px;
+
+            padding: 12px;
+
+            border-radius: 42px;
+
+            background: linear-gradient(
+                145deg,
+                #3e4745,
+                #080c0b 35%,
+                #161c1a
+            );
+
+            border: 2px solid #66706c;
+
+            box-shadow:
+                0 40px 80px rgba(0,0,0,0.55),
+                0 0 50px rgba(0,255,173,0.12);
+
+            transform: rotate(5deg);
+        }
+
+        .phone-screen {
+            min-height: 542px;
+
+            border-radius: 32px;
+            padding: 25px 17px;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(0,255,173,0.15),
+                    transparent 35%
+                ),
+                #03100d;
+
+            overflow: hidden;
+        }
+
+        .notch {
+            width: 90px;
+            height: 23px;
+
+            margin: -14px auto 22px;
+
+            border-radius: 0 0 15px 15px;
+
+            background: #000;
+        }
+
+        .app-logo {
+            text-align: center;
+            margin-bottom: 8px;
+
+            color: #00ffad;
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .app-subtitle {
+            text-align: center;
+            color: #91a09c;
+            font-size: 10px;
+            margin-bottom: 24px;
+        }
+
+        /* =========================
+           PLAN CARDS
+        ========================= */
+
+        .plan-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 13px 12px;
+            margin-bottom: 10px;
+
+            border-radius: 14px;
+
+            background: rgba(0,255,173,0.055);
+            border: 1px solid rgba(0,255,173,0.16);
+        }
+
+        .plan-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-icon {
+            width: 34px;
+            height: 34px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: rgba(0,255,173,0.13);
+
+            color: #00ffad;
+            font-size: 15px;
+        }
+
+        .plan-name {
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .plan-earning {
+            margin-top: 3px;
+            color: #8d9d98;
+            font-size: 9px;
+        }
+
+        .plan-price {
+            color: #00ffad;
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        .phone-bottom {
+            display: flex;
+            justify-content: space-around;
+
+            margin-top: 22px;
+            padding-top: 15px;
+
+            border-top: 1px solid rgba(255,255,255,0.08);
+
+            color: #65736f;
+            font-size: 9px;
+        }
+
+        .phone-bottom .active {
+            color: #00ffad;
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+            max-width: 1250px;
+            margin: auto;
+
+            padding: 20px 30px 80px;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .feature {
+            padding: 25px;
+
+            border-radius: 18px;
+
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(255,255,255,0.07);
+
+            transition: 0.25s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0,255,173,0.25);
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 13px;
+
+            background: rgba(0,255,173,0.09);
+
+            color: #00ffad;
+
+            font-size: 20px;
+
+            margin-bottom: 16px;
+        }
+
+        .feature h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .feature p {
+            color: #71807c;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            max-width: 1050px;
+            margin: 0 auto 70px;
+
+            padding: 60px 30px;
+
+            text-align: center;
+
+            border-radius: 30px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(0,255,173,0.12),
+                    transparent 65%
+                ),
+                rgba(255,255,255,0.025);
+
+            border: 1px solid rgba(0,255,173,0.15);
+        }
+
+        .cta h2 {
+            font-size: 38px;
+            margin-bottom: 14px;
+        }
+
+        .cta p {
+            color: #85938f;
+            margin-bottom: 25px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 25px;
+            text-align: center;
+
+            color: #53605d;
+            font-size: 12px;
+
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .navbar {
+                padding: 18px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 55px 22px 30px;
+                text-align: center;
+            }
+
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero h1 {
+                font-size: 54px;
+                letter-spacing: -3px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+                max-width: 340px;
+            }
+
+            .phone-area {
+                min-height: 550px;
+            }
+
+            .phone {
+                transform: rotate(3deg) scale(0.92);
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 30px 20px 60px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .brand-name {
+                font-size: 20px;
+            }
+
+            .brand-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 21px;
+            }
+
+            .nav-download {
+                padding: 10px 15px;
+                font-size: 12px !important;
+            }
+
+            .hero {
+                padding-top: 45px;
+            }
+
+            .hero h1 {
+                font-size: 49px;
+            }
+
+            .eyebrow {
+                font-size: 10px;
+            }
+
+            .phone-area {
+                min-height: 500px;
+            }
+
+            .phone {
+                width: 260px;
+                min-height: 520px;
+            }
+
+            .phone-screen {
+                min-height: 492px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .cta {
+                margin: 0 18px 50px;
+                padding: 45px 20px;
+            }
+
+            .cta h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                E
+            </div>
+
+            <div class="brand-name">
+                Earn<span>Money</span>
+            </div>
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="#home">Home</a>
+            <a href="#plans">Plans</a>
+            <a href="#features">How It Works</a>
+            <a href="#download">Download</a>
+
+        </div>
+
+        <!-- SAME APK DOWNLOAD LOGIC -->
+
+        <a
+            class="nav-download"
+            href="app-release.apk"
+            download="Plan-Purchase.apk"
+        >
+            Download App
+        </a>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main id="home">
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+                    ⚡ SIMPLE PLANS • EASY ACCESS
+                </div>
+
+                <h1>
+                    Earn.<br>
+                    <span>Grow.</span><br>
+                    Repeat.
+                </h1>
+
+                <p class="hero-description">
+                    Choose a plan that suits you and get started
+                    with the EarnMoney app. Simple experience,
+                    clean interface and easy access from your Android device.
+                </p>
+
+
+                <!-- SAME APK DOWNLOAD LOGIC -->
+
+                <a
+                    class="download-btn"
+                    href="app-release.apk"
+                    download="Plan-Purchase.apk"
+                >
+                    <span class="android-icon">⬇</span>
+                    Download App
+                    <span>→</span>
+                </a>
+
+                <p class="small-info">
+                    Android App • Fast • Simple • Easy
+                </p>
+
+            </div>
+
+
+            <!-- =========================
+                 PHONE PREVIEW
+            ========================== -->
+
+            <div class="phone-area">
+
+                <div class="phone-glow"></div>
+
+                <div class="phone">
+
+                    <div class="phone-screen">
+
+                        <div class="notch"></div>
+
+                        <div class="app-logo">
+                            EarnMoney
+                        </div>
+
+                        <div class="app-subtitle">
+                            Simple Plans • Daily Earnings
+                        </div>
+
+
+                        <div id="plans">
+
+                            <div class="plan-card">
+
+                                <div class="plan-left">
+
+                                    <div class="plan-icon">
+                                        ★
+                                    </div>
+
+                                    <div>
+                                        <div class="plan-name">
+                                            Basic Plan
+                                        </div>
+
+                                        <div class="plan-earning">
+                                            Daily Earning
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="plan-price">
+                                    Rs. 50
+                                </div>
+
+                            </div>
+
+
+                            <div class="plan-card">
+
+                                <div class="plan-left">
+
+                                    <div class="plan-icon">
+                                        ◆
+                                    </div>
+
+                                    <div>
+                                        <div class="plan-name">
+                                            Standard Plan
+                                        </div>
+
+                                        <div class="plan-earning">
+                                            Daily Earning
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="plan-price">
+                                    Rs. 120
+                                </div>
+
+                            </div>
+
+
+                            <div class="plan-card">
+
+                                <div class="plan-left">
+
+                                    <div class="plan-icon">
+                                        ★
+                                    </div>
+
+                                    <div>
+                                        <div class="plan-name">
+                                            Premium Plan
+                                        </div>
+
+                                        <div class="plan-earning">
+                                            Daily Earning
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="plan-price">
+                                    Rs. 300
+                                </div>
+
+                            </div>
+
+
+                            <div class="plan-card">
+
+                                <div class="plan-left">
+
+                                    <div class="plan-icon">
+                                        ♛
+                                    </div>
+
+                                    <div>
+                                        <div class="plan-name">
+                                            VIP Plan
+                                        </div>
+
+                                        <div class="plan-earning">
+                                            Daily Earning
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="plan-price">
+                                    Rs. 700
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="phone-bottom">
+
+                            <span class="active">
+                                ● Home
+                            </span>
+
+                            <span>
+                                ◆ Plans
+                            </span>
+
+                            <span>
+                                ◉ Earnings
+                            </span>
+
+                            <span>
+                                ● Profile
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FEATURES
+        ========================== -->
+
+        <section
+            class="features"
+            id="features"
+        >
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🛡
+                </div>
+
+                <h3>
+                    Simple Experience
+                </h3>
+
+                <p>
+                    Clean and easy-to-use interface designed
+                    for a smooth experience.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Multiple Plans
+                </h3>
+
+                <p>
+                    Choose between different plans according
+                    to your preference.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📱
+                </div>
+
+                <h3>
+                    Android App
+                </h3>
+
+                <p>
+                    Download the Android application and
+                    access your account easily.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    Easy To Start
+                </h3>
+
+                <p>
+                    Download the app and follow the simple
+                    steps to get started.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CTA
+        ========================== -->
+
+        <section
+            class="cta"
+            id="download"
+        >
+
+            <h2>
+                Ready to get started?
+            </h2>
+
+            <p>
+                Download the EarnMoney Android app today.
+            </p>
+
+
+            <!-- SAME APK DOWNLOAD LOGIC -->
+
+            <a
+                class="download-btn"
+                href="app-release.apk"
+                download="Plan-Purchase.apk"
+            >
+                <span>⬇</span>
+                Download App
+                <span>→</span>
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+        © 2026 EarnMoney • Android App
+    </footer>
+
+</div>
+
+</body>
+</html>
